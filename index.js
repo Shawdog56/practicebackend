@@ -6,14 +6,12 @@ import rootRoute from "./routes/RootRoute.js";
 
 dotenv.config();
 
-// Connect to the database
-connection.connect((err) => {
-  if (err) {
-    console.error("Error connecting to the database:", err.stack);
-    return;
-  }
-  console.log("Connected to the database as id " + connection.threadId);
-});
+try {
+  await connection.authenticate();
+  console.log("✅ Conexión establecida con la base de datos.");
+} catch (error) {
+  console.error("❌ Error de conexión a la base de datos:", error);
+}
 
 const PORT = process.env.PORT;
 const App = express();

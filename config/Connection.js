@@ -8,7 +8,7 @@ const connection = new Sequelize(
   process.env.BD_PASSWORD,
   {
     host: process.env.HOST,
-    port: "3306",
+    port: 3306,
     dialect: "mysql",
     pool: {
       max: 5,
