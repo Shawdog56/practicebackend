@@ -11,4 +11,5 @@ class LoginRepository {
   }
 }
 
-export default new LoginRepository();
+const loginRepository = new LoginRepository();
+export default loginRepository;

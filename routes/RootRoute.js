@@ -1,8 +1,6 @@
 import express from "express";
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
-import login from "../controllers/LoginController.js";
 import LoginController from "../controllers/LoginController.js";
 
 const router = express.Router();
