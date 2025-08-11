@@ -1,5 +1,31 @@
-export default function rootRoute(req, res) {
+import express from "express";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+import login from "../controllers/LoginController.js";
+import LoginController from "../controllers/LoginController.js";
+
+const router = express.Router();
+dotenv.config();
+const JWT = process.env.JWT;
+
+router.route("/").get((req, res) => {
   res.send({
-    message: "Pusuas es mi pastor, nada me faltará",
+    pusuas: "raíz",
+    acceso: "autorizado",
   });
-}
+});
+
+router
+  .route("/huesos")
+  .get((req, res) => {
+    res.send({
+      pusuas: "huesos",
+      acceso: "autorizado",
+    });
+  })
+  .post((req, res) => {});
+
+router.route("/login").post(LoginController);
+
+export default router;

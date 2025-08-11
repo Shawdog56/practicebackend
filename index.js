@@ -1,10 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
-import connection from "./config/Connection.js";
+import cors from "cors";
 
+import connection from "./config/Connection.js";
 import rootRoute from "./routes/RootRoute.js";
 
 dotenv.config();
+const clave = process.env.JWT;
+console.log(clave);
 
 try {
   await connection.authenticate();
@@ -16,8 +19,24 @@ try {
 const PORT = process.env.PORT;
 const App = express();
 
+App.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+
+App.use(express.json());
+
 App.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
 
-App.route("/").get(rootRoute);
+App.use("/api", rootRoute);
+
+App.route("/").get((req, res) => {
+  res.json({
+    raíz: "raíz",
+    access: "allowed",
+  });
+});
