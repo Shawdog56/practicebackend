@@ -1,7 +1,4 @@
 import bcrypt from "bcrypt";
-import { Op } from "sequelize";
-
-import User from "../models/User.js";
 import loginRepository from "../repositories/LoginRepository.js";
 
 class LoginService {

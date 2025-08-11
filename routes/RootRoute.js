@@ -5,7 +5,6 @@ import LoginController from "../controllers/LoginController.js";
 
 const router = express.Router();
 dotenv.config();
-const JWT = process.env.JWT;
 
 router.route("/").get((req, res) => {
   res.send({
